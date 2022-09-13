@@ -44,7 +44,7 @@ class _BottonNavigatorState extends State<BottonNavigator> {
             items: [
               BottomNavigationBarItem(
                 icon: Icon(Icons.home ),
-                label: "home"
+                label: "home1"
                 //'test', styles: TextStyle(fontSize: 30.0),
                 
                 
