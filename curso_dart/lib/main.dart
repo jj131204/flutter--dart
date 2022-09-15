@@ -16,6 +16,7 @@ class MiApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "pagina principal",
+      debugShowCheckedModeBanner: false,
       home: Inicio(),
     );
   }
