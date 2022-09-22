@@ -12,7 +12,7 @@ class BottonNavigator extends StatefulWidget {
 
 class _BottonNavigatorState extends State<BottonNavigator> {
   int _paginaActual = 0;
-  
+
   List<Widget> _paginas = [
     content_animated(),
     paginaUsers(),
@@ -33,13 +33,14 @@ class _BottonNavigatorState extends State<BottonNavigator> {
       ),
       body: _paginas[_paginaActual],
       bottomNavigationBar: BottomNavigationBar(
+        
         //backgroundColor: Color(0xfff0f4fb),
         onTap: (index) {
           setState(() {
             _paginaActual = index;
           });
         },
-        currentIndex: _paginaActual,
+        currentIndex: _paginaActual, // Sirve para subrayar el icono seleccionado
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.content_paste_go),
