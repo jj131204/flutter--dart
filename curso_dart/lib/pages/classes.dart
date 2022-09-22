@@ -25,23 +25,45 @@ class _ApisState extends State<Apis> {
       appBar: AppBar(
         title: Text("Contactos de personas"),
       ),
-      body: ListView.builder(
-          itemCount: _personas.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-              /** SI SE MANTIENE PRESIONADO SE EJECUTA. */
-              onLongPress: () {
-                _borrarPersonas(context, _personas[index]);
-              },
-              title:
-                  Text(_personas[index].name + ' ' + _personas[index].lastName),
-              subtitle: Text(_personas[index].phone),
-              leading: CircleAvatar(
-                child: Text(_personas[index].name.substring(0, 1)),
-              ),
-              trailing: Icon(Icons.arrow_forward_ios),
-            );
-          }),
+      body: Container(
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              /** Lista de contactos */
+              child: ListView.builder(
+                  itemCount: _personas.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      /** SI SE MANTIENE PRESIONADO SE EJECUTA. */
+                      onLongPress: () {
+                        _borrarPersonas(context, _personas[index]);
+                      },
+                      title: Text(_personas[index].name +
+                          ' ' +
+                          _personas[index].lastName),
+                      subtitle: Text(_personas[index].phone),
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.red,
+                        child: Text(
+                          _personas[index].name.substring(0, 1),
+                          style: TextStyle(fontSize: 20.0, color: Colors.white),
+                        ),
+                      ),
+                      trailing: Icon(Icons.arrow_forward_ios),
+                    );
+                  }),
+            ),
+            /** Boton para agregar contacto. */
+            ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    _newContact(context, _personas);
+                  });
+                },
+                child: Text("Agregar contacto")),
+          ],
+        ),
+      ),
     );
   }
 
@@ -77,6 +99,40 @@ class _ApisState extends State<Apis> {
                       )),
                 ]));
   }
+}
+
+_newContact(context, persona) {
+  showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+            title: Text("Nuevo contacto"),
+            actions: [
+              TextFormField(
+                decoration: const InputDecoration(
+                  icon: Icon(Icons.person),
+                  hintText: 'What do people call you?',
+                  labelText: 'Name *',
+                
+                
+                ),
+                onSaved: (String? value) {
+                  // This optional block of code can be used to run
+                  // code when the user saves the form.
+                  
+                },
+                validator: (String? value) {
+                  print(value);
+                },
+
+              )
+            ],
+          ));
+
+  final newContact = Persona("nuevo", "nuevo", "nuevo");
+
+  persona.add(newContact);
+
+  // print(persona[4].name);
 }
 
 class Persona {
