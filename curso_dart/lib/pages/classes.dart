@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 class Apis extends StatefulWidget {
@@ -101,30 +103,27 @@ class _ApisState extends State<Apis> {
   }
 }
 
+final _keyForm = GlobalKey<FormState>();
+
 _newContact(context, persona) {
   showDialog(
       context: context,
       builder: (_) => AlertDialog(
             title: Text("Nuevo contacto"),
             actions: [
-              TextFormField(
-                decoration: const InputDecoration(
-                  icon: Icon(Icons.person),
-                  hintText: 'What do people call you?',
-                  labelText: 'Name *',
-                
-                
-                ),
-                onSaved: (String? value) {
-                  // This optional block of code can be used to run
-                  // code when the user saves the form.
-                  
-                },
-                validator: (String? value) {
-                  print(value);
-                },
-
-              )
+              Form(
+                  key: _keyForm,
+                  child: Container(
+                    child: Column(children: <Widget>[
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          icon: Icon(Icons.person),
+                          hintText: 'Ingresa el nombre de la persona',
+                          labelText: 'Name *',
+                        ),
+                      ),
+                    ]),
+                  ))
             ],
           ));
 
@@ -134,6 +133,63 @@ _newContact(context, persona) {
 
   // print(persona[4].name);
 }
+
+/** _namePerson(){
+  return TextFormField(
+                decoration: const InputDecoration(
+                  icon: Icon(Icons.person),
+                  hintText: 'Ingresa el nombre de la persona',
+                  labelText: 'Name *',                
+                ),
+                validator: (value) => _validatorEmail(value)
+  );
+}
+
+_validatorEmail(value){
+  if(value == null){
+    return "Ingresa un valor";
+  }
+}
+
+_lastNamePerson(){
+  return TextFormField(
+                decoration: const InputDecoration(
+                  icon: Icon(Icons.person),
+                  hintText: 'Ingresa el apellido de la persona',
+                  labelText: 'Last  name *',                
+                )
+  );
+}
+
+_phonePerson(){
+  return TextFormField(
+                decoration: const InputDecoration(
+                  icon: Icon(Icons.person),
+                  hintText: 'Ingresa el numero de telefono',
+                  labelText: 'Phone',                
+                ),
+  );
+}
+
+
+
+ _addContact(){
+   return ElevatedButton(
+      onPressed: () {
+        // devolverá true si el formulario es válido, o falso si
+        // el formulario no es válido.
+        if (_keyForm.currentState == true) {
+          // Si el formulario es válido, queremos mostrar un Snackbar
+          print("hola mundo");
+        }
+        else{
+          print("bye mundo");
+        }
+      },
+      child: Text('Login'),
+    );
+
+ } */
 
 class Persona {
   String name;
