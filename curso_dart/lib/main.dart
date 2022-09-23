@@ -1,3 +1,4 @@
+import 'package:curso_dart/pages/classes.dart';
 import 'package:curso_dart/pages/alertDialog.dart';
 import 'package:curso_dart/pages/botton-navigator.dart';
 import 'package:curso_dart/pages/buttons.dart';
@@ -16,6 +17,7 @@ class MiApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "pagina principal",
+      debugShowCheckedModeBanner: false,
       home: Inicio(),
     );
   }
@@ -33,7 +35,7 @@ class _InicioState extends State<Inicio> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("botones de las diferentes clases"),    
+        title: Text("botones de las diferentes clases"),
       ),
       body: Center(
         child: Column(
@@ -95,6 +97,20 @@ class _InicioState extends State<Inicio> {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context)=>  BottonNavigator())
+              )
+            }),
+     
+            
+
+            SizedBox(height: 15.0,),
+            
+            Text("Consumir APis"),
+            ElevatedButton(
+              child:Text("Consumir APis"),
+              onPressed: ()=>{
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context)=>  Apis())
               )
             }),
           ],
